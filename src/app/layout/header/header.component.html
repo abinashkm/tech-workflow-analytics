@@ -1,0 +1,57 @@
+<mat-toolbar class="app-header">
+
+  <div class="header-inner">
+
+    <div class="branding">
+      <h1 class="title">{{ appTitle }}</h1>
+      <p class="subtitle">{{ subtitle }}</p>
+    </div>
+
+    <div class="controls">
+
+      <div class="year-container">
+        <div class="year-capsule"
+             (click)="toggleYearDropdown()">
+
+          <span class="year-text">
+            {{ selectedYear || 'Year' }}
+          </span>
+
+          <mat-icon class="dropdown-icon">
+            expand_more
+          </mat-icon>
+
+        </div>
+
+        <div class="year-dropdown-panel"
+             *ngIf="isYearOpen">
+
+          <div class="year-option"
+               *ngFor="let year of years"
+               (click)="selectYear(year)">
+            {{ year }}
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="theme-switch"
+           (click)="toggleTheme()"
+           [class.active]="themeService.isDarkMode()">
+
+        <div class="switch-track">
+          <div class="switch-knob">
+            <mat-icon>
+              {{ themeService.isDarkMode() ? 'dark_mode' : 'light_mode' }}
+            </mat-icon>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</mat-toolbar>

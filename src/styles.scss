@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Base */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #f1f5f9;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ------------------ DARK MODE ------------------ */
+
+body.dark-theme {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+/* Main content background */
+body.dark-theme .app-content {
+  background: #0f172a;
+}
+
+/* Header Dark Mode */
+body.dark-theme .app-header {
+  background: #111827 !important;
+  color: #e2e8f0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Mat select dropdown text in dark */
+body.dark-theme .mat-mdc-select-value-text {
+  color: #e2e8f0 !important;
+}
+
+/* Dropdown panel dark */
+body.dark-theme .mat-mdc-select-panel {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+}
