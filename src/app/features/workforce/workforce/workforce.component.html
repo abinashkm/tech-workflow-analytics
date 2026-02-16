@@ -46,33 +46,33 @@
 
   </div>
 
-  <!-- SECONDARY GRID -->
-  <div class="secondary-grid">
+    <!-- YoY Chart -->
+    <div class="main-chart">
+    <h3>YoY Layoff Growth</h3>
 
-    <div class="secondary-card">
-      <h3>YoY Layoff Growth</h3>
-      <div class="chart-wrapper">
+    <div class="chart-wrapper">
         <canvas
-          baseChart
-          [data]="yoyChartData"
-          [options]="yoyChartOptions"
-          [type]="'bar'">
+        baseChart
+        [data]="yoyChartData"
+        [options]="yoyChartOptions"
+        [type]="'bar'">
         </canvas>
-      </div>
+    </div>
     </div>
 
-    <div class="secondary-card">
-      <h3>Top Impacted Companies</h3>
-      <div class="chart-wrapper">
+    <!-- Top Companies -->
+    <div class="main-chart">
+    <h3>Top Impacted Companies</h3>
+
+    <div class="chart-wrapper">
         <canvas
-          baseChart
-          [data]="companyChartData"
-          [options]="companyChartOptions"
-          [type]="'bar'">
+        baseChart
+        [data]="companyChartData"
+        [options]="companyChartOptions"
+        [type]="'bar'">
         </canvas>
-      </div>
+    </div>
     </div>
 
-  </div>
 
 </section>

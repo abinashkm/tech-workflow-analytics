@@ -22,9 +22,14 @@ export class MainLayoutComponent {
   isSidebarCollapsed = false; 
 
   toggleSidebar() {
-    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+      this.isSidebarCollapsed = !this.isSidebarCollapsed;
+      
+      // Trigger immediately so the charts try to adapt as the sidebar moves
+      window.dispatchEvent(new Event('resize'));
+
+      // Final check once the 0.3s CSS transition is complete
       setTimeout(() => {
         window.dispatchEvent(new Event('resize'));
-      }, 300);
-  }
+      }, 310); // 310ms to ensure it fires just after the 0.3s (300ms) transition
+    }
 }

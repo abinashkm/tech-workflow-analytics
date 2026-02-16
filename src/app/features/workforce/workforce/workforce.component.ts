@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { ViewChildren, QueryList } from '@angular/core';
+import { Component, ViewChildren, QueryList, AfterViewInit, OnDestroy, ElementRef} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartOptions } from 'chart.js';
@@ -41,17 +40,45 @@ Chart.register(
   templateUrl: './workforce.component.html',
   styleUrl: './workforce.component.scss'
 })
-export class WorkforceComponent {
+export class WorkforceComponent  implements AfterViewInit, OnDestroy {
 
-  @ViewChildren(BaseChartDirective) charts!: QueryList<BaseChartDirective>;
+@ViewChildren(BaseChartDirective) charts!: QueryList<BaseChartDirective>;
+  private resizeObserver: ResizeObserver | null = null;
 
-  public resizeCharts(): void {
+  constructor(private el: ElementRef) {} // Inject ElementRef to watch this component
+
+  ngAfterViewInit() {
+    // This watches the physical size of the dashboard container
+    this.resizeObserver = new ResizeObserver(() => {
+      this.forceChartResize();
+    });
+    
+    this.resizeObserver.observe(this.el.nativeElement);
+  }
+
+  ngOnDestroy() {
+    // Stop watching when user leaves the page
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
+  }
+
+  private forceChartResize() {
     if (this.charts) {
       this.charts.forEach(chart => {
-        chart.chart?.resize();
+        // requestAnimationFrame ensures the resize happens 
+        // after the browser calculates the new layout width
+        requestAnimationFrame(() => {
+          chart.chart?.resize();
+          chart.chart?.update();
+        });
       });
     }
   }
+
+  public baseChartOptions = {
+      color: '#e5e7eb'
+  };
 
 
   /* ================= MAIN MULTI-AXIS LINE CHART ================= */
@@ -87,26 +114,16 @@ export class WorkforceComponent {
       }
     },
     scales: {
-      y: {
-        type: 'linear',
-        position: 'left',
-        title: {
-          display: true,
-          text: 'Layoffs'
-        }
+      x: {
+        ticks: { color: '#9ca3af' },
+        grid: { color: 'rgba(255,255,255,0.05)' }
       },
-      y1: {
-        type: 'linear',
-        position: 'right',
-        grid: {
-          drawOnChartArea: false
-        },
-        title: {
-          display: true,
-          text: 'Burnout Score'
-        }
+      y: {
+        ticks: { color: '#9ca3af' },
+        grid: { color: 'rgba(255,255,255,0.05)' }
       }
     }
+
   };
 
   /* ================= YoY GROWTH BAR CHART ================= */
@@ -128,7 +145,18 @@ export class WorkforceComponent {
       legend: {
         display: false
       }
+    },
+    scales: {
+      x: {
+        ticks: { color: '#9ca3af' },
+        grid: { color: 'rgba(255,255,255,0.05)' }
+      },
+      y: {
+        ticks: { color: '#9ca3af' },
+        grid: { color: 'rgba(255,255,255,0.05)' }
+      }
     }
+
   };
 
   /* ================= TOP COMPANIES HORIZONTAL BAR ================= */
@@ -151,7 +179,18 @@ export class WorkforceComponent {
       legend: {
         display: false
       }
+    },
+    scales: {
+      x: {
+        ticks: { color: '#9ca3af' },
+        grid: { color: 'rgba(255,255,255,0.05)' }
+      },
+      y: {
+        ticks: { color: '#9ca3af' },
+        grid: { color: 'rgba(255,255,255,0.05)' }
+      }
     }
+
   };
 
 }
