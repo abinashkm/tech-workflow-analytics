@@ -1,107 +1,116 @@
-/* ================= SIDEBAR BASE ================= */
-
+/* sidebar.component.scss */
 .sidebar {
-  width: 240px;
-  background: #ffffff;
-  border-right: 1px solid #e5e7eb;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 28px 20px;
-  transition: background 0.3s ease,
-              border-color 0.3s ease;
+  padding: 24px 16px;
+  overflow: hidden; /* Critical: hides text when width shrinks */
+  /* Remove background here, it's handled in main-layout host */
+  transition: all 0.3s ease;
 }
 
-/* Dark Mode Sidebar */
-body.dark-theme .sidebar {
-  background: #0b1220;
-  border-right: 1px solid #1f2937;
+:host-context(app-sidebar.collapsed) .sidebar {
+  padding: 24px 0; /* Remove horizontal padding when collapsed */
+  width: 0;
 }
-
-/* ================= HEADER ================= */
 
 .sidebar-header {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 36px;
-  padding-left: 8px;
-  color: #0f172a;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+  padding-left: 12px;
+  white-space: nowrap; /* Prevents wrapping */
+  overflow: hidden;
 }
 
-body.dark-theme .sidebar-header {
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+:host-context(.dark-theme) .logo-text {
   color: #f1f5f9;
 }
 
-/* ================= NAVIGATION ================= */
-
+/* ================= NAV ITEMS ================= */
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
-
-/* Base Nav Item */
 
 .nav-item {
-  position: relative;
-  padding: 10px 14px 10px 18px;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 12px;
+  border-radius: 12px;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  color: #475569;
-  transition: background 0.25s ease,
-              color 0.25s ease,
-              transform 0.15s ease;
+  color: #64748b;
+  transition: all 0.2s ease;
+  white-space: nowrap; /* Critical */
+  overflow: hidden;    /* Critical */
 }
 
-/* Hover - Light */
+.nav-icon {
+  min-width: 24px; /* Fixes icon squishing */
+  margin-right: 12px;
+  font-size: 24px;
+}
+
+.nav-label {
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+/* Hover States */
 .nav-item:hover {
   background: #f1f5f9;
-  transform: translateX(2px);
-}
-
-/* Active - Light */
-.nav-item.active {
-  background: #e0f2fe;
   color: #0f172a;
-  font-weight: 600;
 }
 
-/* Accent Bar */
-.nav-item::before {
-  content: '';
-  position: absolute;
-  left: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 60%;
-  width: 3px;
-  border-radius: 4px;
-  background: transparent;
-  transition: background 0.25s ease;
+.nav-item.active {
+  background: #e0f2fe; /* Light Blue */
+  color: #0284c7;
 }
 
-.nav-item.active::before {
-  background: #0ea5e9;
+:host-context(.dark-theme) .nav-item:hover {
+  background: #1e293b;
+  color: white;
 }
 
-/* ================= DARK MODE NAV ================= */
-
-body.dark-theme .nav-item {
-  color: #94a3b8;
+:host-context(.dark-theme) .nav-item.active {
+  background: rgba(14, 165, 233, 0.15);
+  color: #38bdf8;
 }
 
-body.dark-theme .nav-item:hover {
-  background: #111827;
-  transform: translateX(2px);
+/* ================= COLLAPSED STATE LOGIC ================= */
+/* We rely on the Host element (.collapsed) passed from parent 
+   to style the internals here.
+*/
+
+:host-context(app-sidebar.collapsed) .logo-text {
+  opacity: 0;
+  pointer-events: none;
 }
 
-body.dark-theme .nav-item.active {
-  background: #111827;
-  color: #ffffff;
-  box-shadow: inset 0 0 0 1px #1f2937;
+:host-context(app-sidebar.collapsed) .nav-label {
+  opacity: 0;
+  pointer-events: none;
 }
 
-body.dark-theme .nav-item.active::before {
-  background: #38bdf8;
+/* Center icons when collapsed */
+:host-context(app-sidebar.collapsed) .nav-item {
+  padding: 0;
+  justify-content: center;
+}
+
+:host-context(app-sidebar.collapsed) .nav-icon {
+  margin-right: 0;
 }

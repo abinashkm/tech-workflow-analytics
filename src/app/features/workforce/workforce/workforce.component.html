@@ -1,1 +1,78 @@
-<p>workforce works!</p>
+<section class="dashboard">
+
+  <!-- HEADER -->
+  <div class="dashboard-header">
+    <h2>Workforce Overview</h2>
+    <p>Key metrics and trends across tech employment & burnout</p>
+  </div>
+
+  <!-- KPI GRID -->
+  <div class="kpi-grid">
+
+    <div class="kpi-card">
+      <h3>Total Layoffs</h3>
+      <p class="kpi-value">12,000</p>
+    </div>
+
+    <div class="kpi-card">
+      <h3>Avg Burnout Score</h3>
+      <p class="kpi-value">64</p>
+    </div>
+
+    <div class="kpi-card">
+      <h3>Remote Workforce %</h3>
+      <p class="kpi-value">72%</p>
+    </div>
+
+    <div class="kpi-card">
+      <h3>Total Companies</h3>
+      <p class="kpi-value">245</p>
+    </div>
+
+  </div>
+
+  <!-- MAIN CHART -->
+  <div class="main-chart">
+    <h3>Layoff & Burnout Trends</h3>
+
+    <div class="chart-wrapper">
+      <canvas
+        baseChart
+        [data]="mainChartData"
+        [options]="mainChartOptions"
+        [type]="'line'">
+      </canvas>
+    </div>
+
+  </div>
+
+  <!-- SECONDARY GRID -->
+  <div class="secondary-grid">
+
+    <div class="secondary-card">
+      <h3>YoY Layoff Growth</h3>
+      <div class="chart-wrapper">
+        <canvas
+          baseChart
+          [data]="yoyChartData"
+          [options]="yoyChartOptions"
+          [type]="'bar'">
+        </canvas>
+      </div>
+    </div>
+
+    <div class="secondary-card">
+      <h3>Top Impacted Companies</h3>
+      <div class="chart-wrapper">
+        <canvas
+          baseChart
+          [data]="companyChartData"
+          [options]="companyChartOptions"
+          [type]="'bar'">
+        </canvas>
+      </div>
+    </div>
+
+  </div>
+
+</section>

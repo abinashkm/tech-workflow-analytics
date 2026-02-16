@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
@@ -27,6 +27,9 @@ export class HeaderComponent {
 
   appTitle = 'Tech Workforce Analytics';
   subtitle = 'Workforce Trends & Burnout Insights (2000 – 2026)';
+
+  @Output() menuClick = new EventEmitter<void>();
+
 
   years: number[] = [];
 

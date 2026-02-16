@@ -1,25 +1,30 @@
+// main-layout.component.ts
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { HeaderComponent } from '../header/header.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-main-layout',
+  standalone: true,
   imports: [  
      CommonModule, 
      RouterModule,
-     MatSidenavModule, 
-     MatToolbarModule, 
      SidebarComponent,
      HeaderComponent
-],
+  ],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss'
 })
 export class MainLayoutComponent {
+  // Start expanded on desktop, collapsed on mobile if you add a listener later
+  isSidebarCollapsed = false; 
 
+  toggleSidebar() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 300);
+  }
 }

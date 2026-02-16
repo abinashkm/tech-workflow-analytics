@@ -1,55 +1,52 @@
 <mat-toolbar class="app-header">
 
-  <div class="header-inner">
+  <!-- LEFT : Burger -->
+  <div class="header-left">
+    <button class="menu-btn" (click)="menuClick.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
 
-    <div class="branding">
-      <h1 class="title">{{ appTitle }}</h1>
-      <p class="subtitle">{{ subtitle }}</p>
+  <!-- CENTER : Title -->
+  <div class="header-center">
+    <h1 class="title">
+      {{ appTitle }}
+      <span class="separator">:</span>
+      <span class="subtitle-inline">
+        {{ subtitle }}
+      </span>
+    </h1>
+  </div>
+
+  <!-- RIGHT : Controls -->
+  <div class="header-right">
+
+    <div class="year-container">
+          <div class="year-capsule" (click)="toggleYearDropdown()">
+            <span class="year-text">{{ selectedYear || 'Year' }}</span>
+            <mat-icon>expand_more</mat-icon>
+          </div>
+          <div class="year-dropdown-panel" *ngIf="isYearOpen">
+            <div class="year-option" *ngFor="let year of years" (click)="selectYear(year)">
+              {{ year }}
+            </div>
+          </div>
+          <div class="dropdown-backdrop" 
+              *ngIf="isYearOpen" 
+              (click)="isYearOpen = false">
+          </div>
     </div>
 
-    <div class="controls">
-
-      <div class="year-container">
-        <div class="year-capsule"
-             (click)="toggleYearDropdown()">
-
-          <span class="year-text">
-            {{ selectedYear || 'Year' }}
-          </span>
-
-          <mat-icon class="dropdown-icon">
-            expand_more
+    <div class="theme-switch"
+         (click)="toggleTheme()"
+         [class.active]="themeService.isDarkMode()">
+      <div class="switch-track">
+        <div class="switch-knob">
+          <mat-icon>
+            {{ themeService.isDarkMode() ? 'dark_mode' : 'light_mode' }}
           </mat-icon>
-
         </div>
-
-        <div class="year-dropdown-panel"
-             *ngIf="isYearOpen">
-
-          <div class="year-option"
-               *ngFor="let year of years"
-               (click)="selectYear(year)">
-            {{ year }}
-          </div>
-
-        </div>
-
       </div>
-
-      <div class="theme-switch"
-           (click)="toggleTheme()"
-           [class.active]="themeService.isDarkMode()">
-
-        <div class="switch-track">
-          <div class="switch-knob">
-            <mat-icon>
-              {{ themeService.isDarkMode() ? 'dark_mode' : 'light_mode' }}
-            </mat-icon>
-          </div>
-        </div>
-
-      </div>
-
     </div>
 
   </div>
