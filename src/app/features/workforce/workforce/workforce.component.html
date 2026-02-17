@@ -3,7 +3,7 @@
   <!-- HEADER -->
   <div class="dashboard-header">
     <h2>Workforce Overview</h2>
-    <p>Key metrics and trends across tech employment & burnout</p>
+    <p>Key metrics and trends across tech employment</p>
   </div>
 
   <!-- KPI GRID -->
@@ -11,29 +11,30 @@
 
     <div class="kpi-card">
       <h3>Total Layoffs</h3>
-      <p class="kpi-value">12,000</p>
+      <p class="kpi-value">{{ totalLayoffs | number }}</p>
     </div>
 
     <div class="kpi-card">
-      <h3>Avg Burnout Score</h3>
-      <p class="kpi-value">64</p>
+      <h3>Avg Layoffs / Company</h3>
+      <p class="kpi-value">{{ avgLayoffsPerCompany | number }}</p>
     </div>
 
     <div class="kpi-card">
-      <h3>Remote Workforce %</h3>
-      <p class="kpi-value">72%</p>
+      <h3>Highest Layoff Year</h3>
+      <p class="kpi-value">{{ highestLayoffYear }}</p>
     </div>
 
     <div class="kpi-card">
       <h3>Total Companies</h3>
-      <p class="kpi-value">245</p>
+      <p class="kpi-value">{{ totalCompanies }}</p>
     </div>
 
   </div>
 
-  <!-- MAIN CHART -->
+  <!-- ================= MAIN TREND ================= -->
+
   <div class="main-chart">
-    <h3>Layoff & Burnout Trends</h3>
+    <h3>Layoff Trends Over Time</h3>
 
     <div class="chart-wrapper">
       <canvas
@@ -43,36 +44,36 @@
         [type]="'line'">
       </canvas>
     </div>
-
   </div>
 
-    <!-- YoY Chart -->
-    <div class="main-chart">
+  <!-- ================= YOY ================= -->
+
+  <div class="main-chart">
     <h3>YoY Layoff Growth</h3>
 
     <div class="chart-wrapper">
-        <canvas
+      <canvas
         baseChart
         [data]="yoyChartData"
         [options]="yoyChartOptions"
         [type]="'bar'">
-        </canvas>
+      </canvas>
     </div>
-    </div>
+  </div>
 
-    <!-- Top Companies -->
-    <div class="main-chart">
+  <!-- ================= TOP COMPANIES ================= -->
+
+  <div class="main-chart">
     <h3>Top Impacted Companies</h3>
 
     <div class="chart-wrapper">
-        <canvas
+      <canvas
         baseChart
         [data]="companyChartData"
         [options]="companyChartOptions"
         [type]="'bar'">
-        </canvas>
+      </canvas>
     </div>
-    </div>
-
+  </div>
 
 </section>

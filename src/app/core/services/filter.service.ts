@@ -1,14 +1,31 @@
-import { Injectable, signal } from '@angular/core';
+// import { Injectable, signal } from '@angular/core';
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class FilterService {
+
+//   selectedYear = signal<number | null>(null);
+
+//   setYear(year: number) {
+//     this.selectedYear.set(year);
+//   }
+
+// }
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
 
-  selectedYear = signal<number | null>(null);
+  private yearSubject = new BehaviorSubject<number | 'all'>('all');
 
-  setYear(year: number) {
-    this.selectedYear.set(year);
+  year$ = this.yearSubject.asObservable();
+
+  setYear(year: number | 'all') {
+    this.yearSubject.next(year);
   }
 
 }

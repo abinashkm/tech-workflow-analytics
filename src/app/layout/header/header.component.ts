@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +14,6 @@ import { FilterService } from '../../core/services/filter.service';
   imports: [
     CommonModule,
     MatToolbarModule,
-    MatSelectModule,
     MatIconModule,
     MatButtonModule,
     FormsModule
@@ -30,22 +28,20 @@ export class HeaderComponent {
 
   @Output() menuClick = new EventEmitter<void>();
 
-
   years: number[] = [];
-
-  selectedYear: number | null = null;
+  selectedYear: number | 'all' = 'all';
 
   constructor(
     public themeService: ThemeService,
     private filterService: FilterService
   ) {
-    // Generate years 2000–2026
     for (let i = 2000; i <= 2026; i++) {
       this.years.push(i);
     }
   }
 
-  onYearChange(year: number) {
+  selectYear(year: number | 'all') {
+    this.selectedYear = year;
     this.filterService.setYear(year);
   }
 
@@ -58,12 +54,4 @@ export class HeaderComponent {
   toggleYearDropdown() {
     this.isYearOpen = !this.isYearOpen;
   }
-
-  selectYear(year: number) {
-    this.selectedYear = year;
-    this.filterService.setYear(year);
-    this.isYearOpen = false;
-  }
-
-
 }
