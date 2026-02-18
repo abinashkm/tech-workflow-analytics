@@ -43,7 +43,7 @@ export class HeaderComponent {
   }
 
   showYearSelector(): boolean {
-    return !this.router.url.includes('burnout');
+    return !this.router.url.includes('burnout') && !this.router.url.includes('companies');
   }
 
   selectYear(year: number | 'all') {
