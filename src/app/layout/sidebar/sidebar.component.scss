@@ -1,16 +1,15 @@
-/* sidebar.component.scss */
+
 .sidebar {
   height: 100%;
   display: flex;
   flex-direction: column;
   padding: 24px 16px;
-  overflow: hidden; /* Critical: hides text when width shrinks */
-  /* Remove background here, it's handled in main-layout host */
+  overflow: hidden; 
   transition: all 0.3s ease;
 }
 
 :host-context(app-sidebar.collapsed) .sidebar {
-  padding: 24px 0; /* Remove horizontal padding when collapsed */
+  padding: 24px 0; 
   width: 0;
 }
 
@@ -20,7 +19,7 @@
   align-items: center;
   margin-bottom: 32px;
   padding-left: 12px;
-  white-space: nowrap; /* Prevents wrapping */
+  white-space: nowrap; 
   overflow: hidden;
 }
 
@@ -36,7 +35,6 @@
   color: #f1f5f9;
 }
 
-/* ================= NAV ITEMS ================= */
 .sidebar-nav {
   display: flex;
   flex-direction: column;
@@ -52,12 +50,12 @@
   text-decoration: none;
   color: #64748b;
   transition: all 0.2s ease;
-  white-space: nowrap; /* Critical */
-  overflow: hidden;    /* Critical */
+  white-space: nowrap; 
+  overflow: hidden;    
 }
 
 .nav-icon {
-  min-width: 24px; /* Fixes icon squishing */
+  min-width: 24px;
   margin-right: 12px;
   font-size: 24px;
 }
@@ -69,14 +67,13 @@
   transition: opacity 0.2s ease;
 }
 
-/* Hover States */
 .nav-item:hover {
   background: #f1f5f9;
   color: #0f172a;
 }
 
 .nav-item.active {
-  background: #e0f2fe; /* Light Blue */
+  background: #e0f2fe; 
   color: #0284c7;
 }
 
@@ -90,11 +87,6 @@
   color: #38bdf8;
 }
 
-/* ================= COLLAPSED STATE LOGIC ================= */
-/* We rely on the Host element (.collapsed) passed from parent 
-   to style the internals here.
-*/
-
 :host-context(app-sidebar.collapsed) .logo-text {
   opacity: 0;
   pointer-events: none;
@@ -105,7 +97,6 @@
   pointer-events: none;
 }
 
-/* Center icons when collapsed */
 :host-context(app-sidebar.collapsed) .nav-item {
   padding: 0;
   justify-content: center;

@@ -13,12 +13,6 @@ export const routes: Routes = [
             .then(m => m.WorkforceComponent)
       },
       {
-        path: 'workforce/company/:name',
-        loadComponent: () =>
-          import('../app/features/workforce/company-detail/company-detail.component')
-            .then(m => m.CompanyDetailComponent)
-      },
-      {
         path: 'burnout',
         loadComponent: () =>
           import('../app/features/burnout/burnout/burnout.component')

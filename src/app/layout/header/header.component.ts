@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ThemeService } from '../../core/services/theme.service';
 import { FilterService } from '../../core/services/filter.service';
@@ -32,12 +33,17 @@ export class HeaderComponent {
   selectedYear: number | 'all' = 'all';
 
   constructor(
+    private router : Router,
     public themeService: ThemeService,
     private filterService: FilterService
   ) {
     for (let i = 2000; i <= 2026; i++) {
       this.years.push(i);
     }
+  }
+
+  showYearSelector(): boolean {
+    return !this.router.url.includes('burnout');
   }
 
   selectYear(year: number | 'all') {

@@ -61,8 +61,6 @@ export class WorkforceComponent implements AfterViewInit, OnDestroy, OnInit {
     private filterService: FilterService
   ) {}
 
-  /* ================= STATE ================= */
-
   public records: EmploymentRecord[] = [];
 
   totalLayoffs = 0;
@@ -75,8 +73,6 @@ export class WorkforceComponent implements AfterViewInit, OnDestroy, OnInit {
   public mainChartData: any = { labels: [], datasets: [] };
   public yoyChartData: any = { labels: [], datasets: [] };
   public companyChartData: any = { labels: [], datasets: [] };
-
-  /* ================= INIT ================= */
 
   ngOnInit() {
 
@@ -94,8 +90,6 @@ export class WorkforceComponent implements AfterViewInit, OnDestroy, OnInit {
     });
   }
 
-  /* ================= DASHBOARD ================= */
-
   private computeDashboard() {
 
     if (!this.records.length) return;
@@ -107,8 +101,6 @@ export class WorkforceComponent implements AfterViewInit, OnDestroy, OnInit {
 
     if (!filtered.length) return;
 
-    /* ================= KPIs ================= */
-
     this.totalLayoffs = filtered.reduce((s, r) => s + r.layoffs, 0);
 
     this.totalCompanies =
@@ -119,7 +111,6 @@ export class WorkforceComponent implements AfterViewInit, OnDestroy, OnInit {
         ? Math.round(this.totalLayoffs / this.totalCompanies)
         : 0;
 
-    /* Highest Layoff Year (only meaningful in ALL view) */
     if (this.selectedYear === 'all') {
 
       const yearlyMap = new Map<number, number>();
@@ -140,8 +131,6 @@ export class WorkforceComponent implements AfterViewInit, OnDestroy, OnInit {
       this.highestLayoffYear = this.selectedYear as number;
     }
 
-    /* ================= GROUP BY YEAR ================= */
-
     const grouped = new Map<number, EmploymentRecord[]>();
 
     filtered.forEach(r => {
@@ -160,8 +149,6 @@ export class WorkforceComponent implements AfterViewInit, OnDestroy, OnInit {
       );
     });
 
-    /* ================= MAIN CHART ================= */
-
     this.mainChartData = {
       labels: years.map(y => y.toString()),
       datasets: [
@@ -169,16 +156,40 @@ export class WorkforceComponent implements AfterViewInit, OnDestroy, OnInit {
           label: 'Layoffs',
           data: yearlyLayoffs,
           borderColor: '#2563eb',
-          backgroundColor: 'rgba(37,99,235,0.2)',
+          backgroundColor: 'rgba(37,99,235,0.25)',
           tension: 0.4,
           fill: true,
-          pointRadius: 4,
-          pointHoverRadius: 6
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          pointBackgroundColor: '#2563eb',
+          pointBorderColor: '#ffffff',
+          pointBorderWidth: 2
         }
       ]
     };
 
-    /* ================= YOY ================= */
+    if (years.length === 1) {
+      const value = yearlyLayoffs[0];
+
+      this.mainChartOptions = {
+        ...this.mainChartOptions,
+        scales: {
+          y: {
+            min: value * 0.9,
+            max: value * 1.1
+          }
+        }
+      };
+    } else {
+      this.mainChartOptions = {
+        ...this.mainChartOptions,
+        scales: {
+          y: {
+            beginAtZero: false
+          }
+        }
+      };
+    }
 
     const yoy: number[] = [];
 
@@ -200,8 +211,6 @@ export class WorkforceComponent implements AfterViewInit, OnDestroy, OnInit {
         }
       ]
     };
-
-    /* ================= TOP COMPANIES ================= */
 
     const companyMap = new Map<string, number>();
 
@@ -230,8 +239,6 @@ export class WorkforceComponent implements AfterViewInit, OnDestroy, OnInit {
     setTimeout(() => this.forceChartResize(), 100);
   }
 
-  /* ================= RESIZE FIX ================= */
-
   ngAfterViewInit() {
     this.resizeObserver = new ResizeObserver(() => {
       this.forceChartResize();
@@ -254,12 +261,15 @@ export class WorkforceComponent implements AfterViewInit, OnDestroy, OnInit {
     });
   }
 
-  /* ================= OPTIONS ================= */
-
   public mainChartOptions: ChartOptions<'line'> = {
     responsive: true,
     maintainAspectRatio: false,
-    plugins: { legend: { position: 'top' as const } }
+    plugins: { legend: { position: 'top' as const } },
+    scales: {
+      y: {
+        beginAtZero: false
+      }
+    }
   };
 
   public yoyChartOptions: ChartOptions<'bar'> = {

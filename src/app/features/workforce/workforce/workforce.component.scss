@@ -5,7 +5,6 @@
   padding-bottom: 40px;
 }
 
-/* HEADER */
 .dashboard-header h2 {
   margin: 0;
   font-size: 24px;
@@ -18,7 +17,6 @@
   font-size: 14px;
 }
 
-/* KPI GRID */
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -52,7 +50,6 @@
   font-weight: 700;
 }
 
-/* MAIN CHART */
 .main-chart {
   background: #ffffff;
   padding: 28px;
@@ -64,30 +61,26 @@
   min-height: 350px;
   height: 350px;
   position: relative;
-  overflow: visible; /* 🔥 prevent clipping */
+  overflow: visible; 
 }
 
 .secondary-card:last-child .chart-wrapper {
-  height: 360px;  /* 🔥 give more vertical breathing room */
+  height: 360px;  
 }
-
-/* ================= DARK MODE ================= */
 
 :host-context(.dark-theme) .kpi-card,
 :host-context(.dark-theme) .main-chart,
 :host-context(.dark-theme) .secondary-card {
   background: #111827;
-  border: 1px solid #1f2937;   /* 🔥 visible border */
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.02); /* subtle edge lift */
+  border: 1px solid #1f2937; 
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.02); 
 }
 
-/* Improve chart title visibility */
 :host-context(.dark-theme) h3,
 :host-context(.dark-theme) h2 {
   color: #e5e7eb;
 }
 
-/* KPI text contrast */
 :host-context(.dark-theme) .kpi-card h3 {
   color: #9ca3af;
 }
@@ -96,8 +89,6 @@
   color: #ffffff;
 }
 
-
-/* RESPONSIVE */
 @media (max-width: 1200px) {
   .kpi-grid {
     grid-template-columns: repeat(2, 1fr);

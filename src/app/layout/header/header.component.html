@@ -1,13 +1,11 @@
 <mat-toolbar class="app-header">
-
-  <!-- LEFT : Burger -->
+  
   <div class="header-left">
     <button class="menu-btn" (click)="menuClick.emit()">
       <mat-icon>menu</mat-icon>
     </button>
   </div>
 
-  <!-- CENTER : Title -->
   <div class="header-center">
     <h1 class="title">
       {{ appTitle }}
@@ -18,25 +16,25 @@
     </h1>
   </div>
 
-  <!-- RIGHT : Controls -->
   <div class="header-right">
 
-    <div class="year-container">
-          <div class="year-capsule" (click)="toggleYearDropdown()">
-            <span class="year-text">{{ selectedYear || 'Year' }}</span>
-            <mat-icon>expand_more</mat-icon>
-          </div>
-          <div class="year-dropdown-panel" *ngIf="isYearOpen">
-            <div class="year-option" *ngFor="let year of years" (click)="selectYear(year)">
-              {{ year }}
+    <div *ngIf="showYearSelector()" class="year-container">
+      <div class="year-container">
+            <div class="year-capsule" (click)="toggleYearDropdown()">
+              <span class="year-text">{{ selectedYear || 'Year' }}</span>
+              <mat-icon>expand_more</mat-icon>
             </div>
-          </div>
-          <div class="dropdown-backdrop" 
-              *ngIf="isYearOpen" 
-              (click)="isYearOpen = false">
-          </div>
+            <div class="year-dropdown-panel" *ngIf="isYearOpen">
+              <div class="year-option" *ngFor="let year of years" (click)="selectYear(year)">
+                {{ year }}
+              </div>
+            </div>
+            <div class="dropdown-backdrop" 
+                *ngIf="isYearOpen" 
+                (click)="isYearOpen = false">
+            </div>
+      </div>
     </div>
-
     <div class="theme-switch"
          (click)="toggleTheme()"
          [class.active]="themeService.isDarkMode()">

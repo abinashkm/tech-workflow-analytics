@@ -1,27 +1,22 @@
-/* header.component.scss */
 
-/* ================= HEADER BASE ================= */
 .app-header {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding: 0 24px; /* Reduced padding for mobile safety */
-  height: 70px;    /* Fix the height explicitly */
+  padding: 0 24px; 
+  height: 70px;   
   background: linear-gradient(135deg, #0f766e 0%, #0ea5e9 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  
-  /* CRITICAL FIXES: */
   position: relative;
-  z-index: 100;       /* Must be higher than Sidebar (usually 50) */
-  overflow: visible;  /* Allows dropdown to show outside header */
+  z-index: 100;      
+  overflow: visible;  
 }
 
 :host-context(.dark-theme) .app-header {
   background: #0f172a;
 }
 
-/* ================= LEFT ================= */
 .header-left {
   display: flex;
   align-items: center;
@@ -43,7 +38,6 @@
   background: rgba(255,255,255,0.1);
 }
 
-/* ================= CENTER ================= */
 .header-center {
   text-align: center;
   white-space: nowrap;
@@ -57,7 +51,6 @@
   font-weight: 700;
 }
 
-/* ================= RIGHT ================= */
 .header-right {
   display: flex;
   align-items: center;
@@ -65,9 +58,8 @@
   gap: 16px;
 }
 
-/* ================= YEAR CAPSULE ================= */
 .year-container {
-  position: relative; /* Anchor for the absolute dropdown */
+  position: relative; 
 }
 
 .year-capsule {
@@ -91,24 +83,22 @@
   font-weight: 600;
 }
 
-/* CRITICAL DROPDOWN FIX */
 .year-dropdown-panel {
   position: absolute;
-  top: 120%; /* Push it slightly below the capsule */
-  right: 0;    /* Anchor to the RIGHT edge so it doesn't go off-screen */
-  left: auto;  /* Override any default left alignment */
+  top: 120%; 
+  right: 0;    
+  left: auto;  
   width: 140px;
   max-height: 300px;
   overflow-y: auto;
-  background: white; /* Make sure it's visible in light mode */
+  background: white; 
   color: #0f172a;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   padding: 8px;
-  z-index: 1001; /* Higher than everything */
+  z-index: 1001; 
 }
 
-/* Dark mode dropdown */
 :host-context(.dark-theme) .year-dropdown-panel {
   background: #1e293b;
   color: white;
@@ -130,18 +120,12 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* ================= THEME SWITCH ================= */
 .theme-switch {
-  /* Keep your existing theme switch styles, just ensure cursor is pointer */
   cursor: pointer;
 }
 
-/* ================= RESPONSIVE ================= */
-/* Find the Responsive section at the bottom of header.component.scss */
-
 @media (max-width: 900px) {
   .app-header {
-    /* Adjust grid to give center more space or allow it to wrap */
     grid-template-columns: auto 1fr auto; 
     height: auto;
     padding: 12px 16px;
@@ -152,20 +136,20 @@
   }
 
   .title {
-    font-size: 16px; /* Smaller font for mobile */
-    white-space: normal; /* Allow the title to wrap to 2 lines */
+    font-size: 16px; 
+    white-space: normal;  
     line-height: 1.2;
     display: flex;
-    flex-direction: column; /* Stack Title and Subtitle vertically */
+    flex-direction: column;  
     align-items: center;
   }
 
   .separator {
-    display: none; /* Hide the ":" on mobile as we are stacking them */
+    display: none;  
   }
 
   .subtitle-inline {
-    display: block; /* Ensure it is NOT display: none */
+    display: block; 
     font-size: 11px;
     opacity: 0.8;
     margin-top: 2px;

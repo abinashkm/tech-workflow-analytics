@@ -1,1 +1,64 @@
-<p>burnout works!</p>
+<section class="dashboard">
+
+  <div class="dashboard-header">
+    <h2>Burnout Analytics</h2>
+    <p>Behavioral insights across workforce wellbeing</p>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <h3>Avg Burnout Score</h3>
+      <p class="kpi-value">{{ avgBurnout | number:'1.0-1' }}</p>
+    </div>
+
+    <div class="kpi-card">
+      <h3>High Risk %</h3>
+      <p class="kpi-value">{{ highRiskPercent | number:'1.0-1' }}%</p>
+    </div>
+
+    <div class="kpi-card">
+      <h3>Avg Work Hours</h3>
+      <p class="kpi-value">{{ avgWorkHours | number:'1.0-1' }}</p>
+    </div>
+
+    <div class="kpi-card">
+      <h3>Avg Sleep Hours</h3>
+      <p class="kpi-value">{{ avgSleepHours | number:'1.0-1' }}</p>
+    </div>
+  </div>
+
+  <div class="main-chart">
+    <h3>Burnout Score Distribution</h3>
+    <div class="chart-wrapper">
+      <canvas baseChart [data]="distributionData" [options]="chartOptions" type="bar"></canvas>
+    </div>
+  </div>
+
+  <div class="main-chart">
+    <h3>Work Hours vs Burnout</h3>
+    <div class="chart-wrapper">
+      <canvas baseChart [data]="workScatterData" [options]="chartOptions" type="scatter"></canvas>
+    </div>
+  </div>
+
+  <div class="main-chart">
+    <h3>Sleep Hours vs Burnout</h3>
+    <div class="chart-wrapper">
+      <canvas baseChart [data]="sleepScatterData" [options]="chartOptions" type="scatter"></canvas>
+    </div>
+  </div>
+
+  <div class="main-chart">
+    <h3>Fatigue & Isolation by Risk</h3>
+    <div class="chart-wrapper">
+      <canvas baseChart [data]="fatigueIsolationData" [options]="chartOptions" type="bar"></canvas>
+    </div>
+  </div>
+
+  <div class="main-chart">
+    <h3>Burnout Risk Breakdown</h3>
+    <div class="chart-wrapper">
+      <canvas baseChart [data]="riskPieData" [options]="chartOptions" type="pie"></canvas>
+    </div>
+  </div>
+
+</section>

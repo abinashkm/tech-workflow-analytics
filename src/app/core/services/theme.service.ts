@@ -9,8 +9,6 @@ export class ThemeService {
 
   constructor() {
     this.initializeTheme();
-
-    // Automatically react when signal changes
     effect(() => {
       const body = document.body;
 

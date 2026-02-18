@@ -1,2 +1,72 @@
-<h2>Companies Analytics</h2>
-<p>This section will show company-wise workforce insights.</p>
+<section class="dashboard">
+
+  <div class="dashboard-header">
+    <h2>Company Insights</h2>
+    <p>Company-level workforce impact analysis</p>
+  </div>
+
+  <div class="kpi-grid">
+
+    <div class="kpi-card">
+      <h3>Total Companies</h3>
+      <p class="kpi-value">{{ totalCompanies }}</p>
+    </div>
+
+    <div class="kpi-card">
+      <h3>Total Layoffs</h3>
+      <p class="kpi-value">{{ totalLayoffs | number }}</p>
+    </div>
+
+    <div class="kpi-card">
+      <h3>Avg Layoffs / Company</h3>
+      <p class="kpi-value">{{ avgLayoffsPerCompany | number }}</p>
+    </div>
+
+    <div class="kpi-card">
+      <h3>Most Impacted Company</h3>
+      <p class="kpi-value">{{ mostImpactedCompany }}</p>
+    </div>
+
+  </div>
+
+  <div class="main-chart">
+    <h3>Top 10 Companies by Layoffs</h3>
+    <div class="chart-wrapper">
+      <canvas baseChart
+        [data]="topCompaniesData"
+        [options]="chartOptions"
+        [type]="'bar'">
+      </canvas>
+    </div>
+  </div>
+
+  <div class="main-chart">
+    <h3>Layoff Trend (Selected Company)</h3>
+
+    <select [(ngModel)]="selectedCompany" (change)="updateCompanyTrend()">
+      <option *ngFor="let c of companyList" [value]="c">
+        {{ c }}
+      </option>
+    </select>
+
+    <div class="chart-wrapper">
+      <canvas baseChart
+        [data]="companyTrendData"
+        [options]="chartOptions"
+        [type]="'line'">
+      </canvas>
+    </div>
+  </div>
+
+  <div class="main-chart">
+    <h3>Layoff Share (Top 5 Companies)</h3>
+    <div class="chart-wrapper">
+      <canvas baseChart
+        [data]="companyShareData"
+        [options]="chartOptions"
+        [type]="'pie'">
+      </canvas>
+    </div>
+  </div>
+
+</section>
