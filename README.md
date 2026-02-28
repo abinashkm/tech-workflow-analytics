@@ -1,59 +1,170 @@
-# TechWorkflowAnalytics
+# 🚀 Tech Workforce Analytics
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+A modern SaaS-style analytics dashboard built with **Angular 19** to visualize workforce layoffs, company impact, and employee burnout insights using real-world CSV datasets — fully frontend-driven, no backend required.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🌐 Live Demo
 
-```bash
-ng serve
+🔗 https://tech-workflow-analytics.netlify.app/
+
+---
+
+## 📌 Project Overview
+
+Tech Workforce Analytics is a multi-dashboard analytics application designed to explore:
+
+- Workforce layoffs trends (2000–2025)
+- Year-over-year growth analysis
+- Company-level impact
+- Employee burnout behavior insights
+
+All data processing, aggregation, and KPI computation are performed client-side using TypeScript.
+
+---
+
+## 🧠 Key Features
+
+- 📊 Dynamic KPI computation (no hardcoded metrics)
+- 📈 Interactive Line, Bar, Horizontal Bar & Pie charts
+- 📂 CSV parsing using PapaParse
+- 🎯 Reactive year-based filtering via centralized FilterService
+- 🌙 Dark / Light theme toggle
+- 📱 Fully responsive SaaS-style layout
+- 🧩 Standalone Angular 19 architecture
+- ⚡ Chart auto-resizing when sidebar toggles
+- 🚀 Deployed as a production-ready SPA on Netlify
+
+---
+
+## 🏗️ Architecture
+
+```
+Header (Theme + Year Filter)
+Sidebar (Navigation)
+Main Layout
+  ├── Workforce Dashboard
+  ├── Burnout Dashboard
+  └── Companies Dashboard
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🛠 Tech Stack
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+| Technology | Usage |
+|---|---|
+| Angular 19 (Standalone) | Frontend Framework |
+| TypeScript | Language |
+| RxJS | Reactive State Management |
+| Chart.js + ng2-charts | Data Visualization |
+| PapaParse | CSV Parsing |
+| SCSS | Styling |
+| Netlify | Deployment |
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 📊 Dashboards
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+### 🧑‍💼 Workforce Dashboard
 
-To build the project run:
+**Features:**
+- Total layoffs KPI
+- Total companies
+- Average layoffs per company
+- Highest layoff year
+- Layoff trend (Line chart)
+- YoY growth (Bar chart)
+- Top impacted companies (Horizontal bar)
 
-```bash
-ng build
-```
+#### 📸 Screenshots
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+**Workforce Overview**
+<img width="1909" height="953" alt="Screenshot 2026-02-28 at 1 30 45 PM" src="https://github.com/user-attachments/assets/b3f41202-e86b-49c0-b5f3-93bfb1f61284" />
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+### 🔥 Burnout Dashboard
 
-For end-to-end (e2e) testing, run:
+**Features:**
+- Average burnout score
+- High risk %
+- Average work hours
+- Average sleep hours
+- Burnout distribution
+- Work vs Burnout analysis
+- Sleep vs Burnout analysis
+- Fatigue vs Isolation comparison
+- Burnout Risk Distribution (Pie)
 
-```bash
-ng e2e
-```
+#### 📸 Screenshots
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+**Burnout Overview**
 
-## Additional Resources
+<img width="1915" height="956" alt="Screenshot 2026-02-28 at 1 31 01 PM" src="https://github.com/user-attachments/assets/dea32247-e742-4e29-88e1-09bfd16b67d0" />
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+---
+
+### 🏢 Companies Dashboard
+
+**Features:**
+- Company-wise layoffs aggregation
+- Top companies ranking
+- Comparative bar visualization
+
+#### 📸 Screenshots
+
+<img width="1900" height="951" alt="Screenshot 2026-02-28 at 1 31 45 PM" src="https://github.com/user-attachments/assets/ec5bab8c-6aee-4ba3-a6cb-05d971f2c7cf" />
+
+
+---
+
+## 📂 Data Handling
+
+- CSV files stored inside `/public`
+- Parsed using PapaParse
+- Transformed into strongly typed interfaces
+- Aggregations performed using:
+  - Map-based grouping
+  - Set-based distinct counts
+  - Client-side YoY calculations
+  - Real-time chart dataset rebuilding
+
+> No REST APIs or backend required.
+
+---
+
+## 🎨 UI & UX Highlights
+
+- Clean SaaS layout with collapsible sidebar
+- Smooth transitions
+- Custom dark theme
+- Consistent card design
+- Proper z-index handling
+- Chart auto-resize using ResizeObserver
+- Mobile responsive layout
+
+---
+
+
+## 📈 What This Project Demonstrates
+
+- Advanced frontend data engineering
+- Client-side analytics processing
+- Reactive state management
+- Standalone Angular architecture
+- Production deployment skills
+- Dashboard UX design thinking
+
+---
+
+## 🧑‍💻 Author
+
+**Abinash Mohanty**  
+Software Engineer | Angular Developer  
